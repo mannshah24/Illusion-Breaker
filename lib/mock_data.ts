@@ -83,7 +83,7 @@ export const MOCK_ANALYSES: Record<string, AnalysisResult> = {
         },
       ],
       summary: 'Content is well-sourced and references legitimate research. Claims are verifiable through credible sources. Minor deductions for lack of direct primary source links.',
-      methodology: 'This analysis uses mocked patterns for demonstration. Production systems would perform live verification.',
+      methodology: 'This is a demonstration using predefined patterns. Production systems would perform live verification against fact-checking databases.',
     },
     metadata: {
       contentType: 'real-news',
@@ -178,7 +178,7 @@ export const MOCK_ANALYSES: Record<string, AnalysisResult> = {
         },
       ],
       summary: 'This article references legitimate research but contains significant misrepresentations. The core study exists and is credible, but key claims about results and regulatory status are either misleading or unverified. Readers should consult the original research paper for accurate findings.',
-      methodology: 'This analysis uses mocked inference patterns designed to demonstrate the Illusion Breaker architecture. In a production system, claims would be verified against live databases, and media would undergo forensic analysis. Current results are illustrative only.',
+      methodology: 'This is a demonstration pattern designed to showcase the Illusion Breaker architecture. In a production system, claims would be verified against live databases, and media would undergo forensic analysis. Current results are illustrative only.',
     },
     metadata: {
       contentType: 'news-article',
@@ -447,7 +447,7 @@ export const MOCK_ANALYSES: Record<string, AnalysisResult> = {
         },
       ],
       summary: 'This analysis was performed on generic content without strong factual claims. Results should be considered preliminary.',
-      methodology: 'This is a demonstration output using mocked inference. Real-world analysis would depend on content specificity and available verification sources.',
+      methodology: 'This is a demonstration pattern. Real-world analysis would depend on content specificity and available verification sources.',
     },
     metadata: {
       contentType: 'generic',

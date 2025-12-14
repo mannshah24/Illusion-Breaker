@@ -74,11 +74,11 @@ export async function analyzeContent(input: AnalysisInput): Promise<AnalysisResu
 }
 
 /**
- * Extract claims from content (mocked)
+ * Extract claims from content (legacy demo function)
  * In production, this would use NLP to identify verifiable statements
  */
 export function extractClaims(content: string): string[] {
-  // Mock implementation - in reality would use NLP
+  // Demo implementation - in reality would use NLP
   const sentences = content.split(/[.!?]+/).filter((s) => s.trim().length > 0)
   
   // Return first few sentences as "claims"
@@ -86,7 +86,7 @@ export function extractClaims(content: string): string[] {
 }
 
 /**
- * Verify a single claim (mocked)
+ * Verify a single claim (legacy demo function)
  * In production, would query fact-checking databases and search engines
  */
 export async function verifyClaim(claim: string): Promise<{
@@ -94,7 +94,7 @@ export async function verifyClaim(claim: string): Promise<{
   confidence: number
   sources: string[]
 }> {
-  // Mock implementation
+  // Demo implementation
   return {
     verified: Math.random() > 0.5,
     confidence: Math.floor(Math.random() * 40) + 40, // 40-80

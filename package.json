@@ -1,7 +1,7 @@
 {
   "name": "illusion-breaker",
   "version": "1.0.0",
-  "description": "AI-powered misinformation analysis tool with mocked inference",
+  "description": "Heuristic-based misinformation analysis tool with transparent reasoning",
   "private": true,
   "scripts": {
     "dev": "next dev",

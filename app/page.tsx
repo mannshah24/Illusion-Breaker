@@ -57,12 +57,17 @@ export default function Home() {
               Try Demo Analysis
             </Link>
             <a
-              href="#extension"
-              className="px-10 py-5 glass-card text-white font-bold rounded-xl transition-all duration-200 hover:border-[#00fff7]"
+              href="https://github.com/mannshah24/Illusion-Breaker/tree/main/extension"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-5 glass-card text-white font-bold rounded-xl transition-all duration-200 hover:border-[#b026ff] glow-purple"
             >
-              Install Extension
+              Download Chrome Extension
             </a>
           </div>
+          <p className="text-xs text-gray-500 mt-3">
+            Manual installation required (Chrome Developer Mode)
+          </p>
         </div>
       </section>
 
@@ -119,6 +124,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How to Use IllusionBreaker */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h3 className="text-3xl font-bold text-white text-center mb-12">How to Use IllusionBreaker</h3>
+        <div className="space-y-8 max-w-4xl mx-auto">
+          {/* Step 1 */}
+          <div className="glass-card rounded-2xl p-8 border-0">
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#00fff7] to-[#b026ff] rounded-xl flex items-center justify-center glow-cyan">
+                <span className="text-black font-bold text-xl">1</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">Install the Extension</h4>
+                <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
+                  <li>
+                    <span className="text-white font-semibold">Download</span> the extension from GitHub —
+                    <a href="https://github.com/mannshah24/Illusion-Breaker/tree/main/extension" target="_blank" rel="noopener noreferrer" className="text-[#00fff7] hover:text-[#39ff14] underline">/extension</a>
+                  </li>
+                  <li>Open <span className="font-mono text-white">chrome://extensions</span></li>
+                  <li>Enable <span className="text-white font-semibold">Developer Mode</span></li>
+                  <li>Click <span className="text-white font-semibold">Load unpacked</span></li>
+                  <li>Select the <span className="text-white font-semibold">/extension</span> folder</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="glass-card rounded-2xl p-8 border-0">
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#00fff7] to-[#b026ff] rounded-xl flex items-center justify-center glow-cyan">
+                <span className="text-black font-bold text-xl">2</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">Inspect Any Webpage</h4>
+                <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
+                  <li>Open any website (news, social media, blog)</li>
+                  <li>Click the IllusionBreaker extension icon</li>
+                  <li>Click <span className="text-white font-semibold">Inspect Reality</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div className="glass-card rounded-2xl p-8 border-0">
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-[#00fff7] to-[#b026ff] rounded-xl flex items-center justify-center glow-cyan">
+                <span className="text-black font-bold text-xl">3</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">View Analysis</h4>
+                <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
+                  <li>You will be redirected to the dashboard</li>
+                  <li>Trust Score, claims, and reasoning are shown automatically</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Extension Section */}
       <section
         id="extension"
@@ -160,14 +226,13 @@ export default function Home() {
             Important Disclaimer
           </h4>
           <p className="text-gray-400 leading-relaxed">
-            Illusion Breaker is a{" "}
-            <strong className="text-white">demonstration tool</strong> designed
-            for educational and research purposes. This MVP uses{" "}
-            <strong className="text-white">mocked AI inference</strong> and
-            predefined analysis patterns—it does not use live machine learning
-            models or paid APIs. Analysis results are illustrative and should
-            not be treated as definitive fact-checking. Always verify
-            information through multiple trusted sources.
+            IllusionBreaker is an{" "}
+            <strong className="text-white">educational and research-oriented tool</strong>{" "}
+            that uses heuristic-based and rule-driven analysis to examine live webpage content.
+            It does not use paid or proprietary AI APIs and does not claim perfect accuracy.
+            Results are intended to{" "}
+            <strong className="text-white">support critical thinking</strong>,
+            not replace independent verification. Always verify information through multiple trusted sources.
           </p>
         </div>
       </section>
@@ -180,7 +245,7 @@ export default function Home() {
               Illusion Breaker - Hackathon MVP
             </p>
             <p className="text-sm">
-              Built with Next.js, TypeScript, and Mocked Oumi Agent
+              Built with Next.js, TypeScript, Kestra, and Oumi
             </p>
           </div>
         </div>

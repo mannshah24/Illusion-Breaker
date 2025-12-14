@@ -6,7 +6,7 @@ import { analyzeContent } from '@/lib/analyze'
  * 
  * Accepts content for analysis and returns structured results
  * In production, this would trigger a Kestra workflow
- * For the MVP, it returns mocked analysis from predefined patterns
+ * For the MVP, it uses real heuristic analysis or demo patterns
  */
 export async function POST(request: NextRequest) {
   try {
