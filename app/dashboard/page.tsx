@@ -21,7 +21,7 @@ function DashboardContent() {
 
   // Auto-trigger analysis when payload is in URL
   useEffect(() => {
-    const payload = searchParams.get('payload');
+    const payload = searchParams.get("payload");
     if (payload) {
       analyzeFromPayload(payload);
     }
@@ -36,10 +36,10 @@ function DashboardContent() {
       const payloadData = JSON.parse(decodeURIComponent(encodedPayload));
 
       // Call API for analysis
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
+      const response = await fetch("/api/analyze", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           content: payloadData.content,
@@ -58,11 +58,13 @@ function DashboardContent() {
       if (result.success && result.data) {
         setAnalysisResult(result.data);
       } else {
-        throw new Error(result.error || 'Analysis failed');
+        throw new Error(result.error || "Analysis failed");
       }
     } catch (err) {
-      console.error('Analysis error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to analyze content');
+      console.error("Analysis error:", err);
+      setError(
+        err instanceof Error ? err.message : "Failed to analyze content"
+      );
     } finally {
       setLoading(false);
     }
@@ -175,9 +177,7 @@ function DashboardContent() {
             <h4 className="text-[#ff6b35] font-bold mb-3 tracking-wide text-lg">
               Analysis Error
             </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {error}
-            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">{error}</p>
           </div>
         )}
 
@@ -261,9 +261,7 @@ function DashboardContent() {
               </h4>
               <p className="text-gray-400 text-sm leading-relaxed">
                 This analysis was generated using{" "}
-                <strong className="text-white">
-                  deterministic heuristics
-                </strong>{" "}
+                <strong className="text-white">deterministic heuristics</strong>{" "}
                 without external APIs. Illusion Breaker analyzes linguistic
                 patterns, domain reputation, source presence, and content
                 structure to compute trust scores. This MVP does not use neural
@@ -299,14 +297,16 @@ function DashboardContent() {
 
 export default function Dashboard() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#00fff7] mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading dashboard...</p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-black flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#00fff7] mx-auto mb-4"></div>
+            <p className="text-gray-400">Loading dashboard...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <DashboardContent />
     </Suspense>
   );

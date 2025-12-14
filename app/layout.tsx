@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Illusion Breaker - Misinformation Analysis Tool",
   description:
     "AI-powered content analysis for detecting misinformation and verifying claims",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

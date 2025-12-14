@@ -232,11 +232,13 @@ The project integrates the [Oumi open-source library](https://github.com/oumi-ai
 ### What Oumi Provides
 
 1. **Agent Configuration Abstraction**
+
    - Structured agent parameter definitions
    - Capability declarations
    - Mode and version management
 
 2. **Evaluation Utilities**
+
    - Consistency scoring for analysis outputs
    - Quality metrics tracking
    - Foundation for reward modeling
@@ -258,6 +260,7 @@ The project integrates the [Oumi open-source library](https://github.com/oumi-ai
 **Reinforcement learning fine-tuning is not executed in this MVP.**
 
 The integration provides:
+
 - ✅ Agent abstraction and configuration
 - ✅ Evaluation utilities and metrics
 - ✅ Architectural foundation for future RL
@@ -379,27 +382,32 @@ It provides:
 To make this production-ready:
 
 ### Phase 1: Real NLP
+
 - Integrate spaCy or Hugging Face for claim extraction
 - Add named entity recognition
 - Implement semantic similarity checks
 
 ### Phase 2: Fact-Checking Integration
+
 - Connect to Google Fact Check API
 - Integrate ClaimReview structured data
 - Add news archive searches
 
 ### Phase 3: Media Forensics
+
 - Implement reverse image search (Google Vision API)
 - Add EXIF metadata analysis
 - Detect deepfakes with specialized models
 
 ### Phase 4: Oumi RL Fine-Tuning
+
 - Implement reward modeling for heuristic calibration
 - Add policy gradient training for score optimization
 - Fine-tune lightweight models for claim extraction
 - Integrate human feedback loops (RLHF)
 
 ### Phase 5: Scale
+
 - Add database for caching results
 - Implement rate limiting
 - Add user accounts and history

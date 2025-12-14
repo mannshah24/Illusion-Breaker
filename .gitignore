@@ -25,6 +25,8 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.development
+.env.production
 
 # vercel
 .vercel
@@ -41,3 +43,25 @@ __pycache__/
 .Python
 venv/
 env/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*.old

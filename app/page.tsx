@@ -126,7 +126,9 @@ export default function Home() {
 
       {/* How to Use IllusionBreaker */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h3 className="text-3xl font-bold text-white text-center mb-12">How to Use IllusionBreaker</h3>
+        <h3 className="text-3xl font-bold text-white text-center mb-12">
+          How to Use IllusionBreaker
+        </h3>
         <div className="space-y-8 max-w-4xl mx-auto">
           {/* Step 1 */}
           <div className="glass-card rounded-2xl p-8 border-0">
@@ -135,16 +137,45 @@ export default function Home() {
                 <span className="text-black font-bold text-xl">1</span>
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">Install the Extension</h4>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">
+                  Install the Extension
+                </h4>
                 <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
                   <li>
-                    <span className="text-white font-semibold">Download</span> the extension from GitHub —
-                    <a href="https://github.com/mannshah24/Illusion-Breaker/tree/main/extension" target="_blank" rel="noopener noreferrer" className="text-[#00fff7] hover:text-[#39ff14] underline">/extension</a>
+                    <span className="text-white font-semibold">Download</span>{" "}
+                    the extension from GitHub —
+                    <a
+                      href="https://github.com/mannshah24/Illusion-Breaker/tree/main/extension"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#00fff7] hover:text-[#39ff14] underline"
+                    >
+                      /extension
+                    </a>
                   </li>
-                  <li>Open <span className="font-mono text-white">chrome://extensions</span></li>
-                  <li>Enable <span className="text-white font-semibold">Developer Mode</span></li>
-                  <li>Click <span className="text-white font-semibold">Load unpacked</span></li>
-                  <li>Select the <span className="text-white font-semibold">/extension</span> folder</li>
+                  <li>
+                    Open{" "}
+                    <span className="font-mono text-white">
+                      chrome://extensions
+                    </span>
+                  </li>
+                  <li>
+                    Enable{" "}
+                    <span className="text-white font-semibold">
+                      Developer Mode
+                    </span>
+                  </li>
+                  <li>
+                    Click{" "}
+                    <span className="text-white font-semibold">
+                      Load unpacked
+                    </span>
+                  </li>
+                  <li>
+                    Select the{" "}
+                    <span className="text-white font-semibold">/extension</span>{" "}
+                    folder
+                  </li>
                 </ol>
               </div>
             </div>
@@ -157,11 +188,18 @@ export default function Home() {
                 <span className="text-black font-bold text-xl">2</span>
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">Inspect Any Webpage</h4>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">
+                  Inspect Any Webpage
+                </h4>
                 <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
                   <li>Open any website (news, social media, blog)</li>
                   <li>Click the IllusionBreaker extension icon</li>
-                  <li>Click <span className="text-white font-semibold">Inspect Reality</span></li>
+                  <li>
+                    Click{" "}
+                    <span className="text-white font-semibold">
+                      Inspect Reality
+                    </span>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -174,10 +212,14 @@ export default function Home() {
                 <span className="text-black font-bold text-xl">3</span>
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">View Analysis</h4>
+                <h4 className="text-xl font-bold text-white mb-3 tracking-wide">
+                  View Analysis
+                </h4>
                 <ol className="text-gray-400 space-y-2 list-decimal list-inside leading-relaxed">
                   <li>You will be redirected to the dashboard</li>
-                  <li>Trust Score, claims, and reasoning are shown automatically</li>
+                  <li>
+                    Trust Score, claims, and reasoning are shown automatically
+                  </li>
                 </ol>
               </div>
             </div>
@@ -227,12 +269,15 @@ export default function Home() {
           </h4>
           <p className="text-gray-400 leading-relaxed">
             IllusionBreaker is an{" "}
-            <strong className="text-white">educational and research-oriented tool</strong>{" "}
-            that uses heuristic-based and rule-driven analysis to examine live webpage content.
-            It does not use paid or proprietary AI APIs and does not claim perfect accuracy.
-            Results are intended to{" "}
+            <strong className="text-white">
+              educational and research-oriented tool
+            </strong>{" "}
+            that uses heuristic-based and rule-driven analysis to examine live
+            webpage content. It does not use paid or proprietary AI APIs and
+            does not claim perfect accuracy. Results are intended to{" "}
             <strong className="text-white">support critical thinking</strong>,
-            not replace independent verification. Always verify information through multiple trusted sources.
+            not replace independent verification. Always verify information
+            through multiple trusted sources.
           </p>
         </div>
       </section>
