@@ -1,7 +1,7 @@
 // Popup script - Handles user interactions in the extension popup
 
-const API_URL = 'http://localhost:3000/api/analyze'
-const DASHBOARD_URL = 'http://localhost:3000/dashboard'
+const API_URL = 'https://illusion-breaker.vercel.app/api/analyze'
+const DASHBOARD_URL = 'https://illusion-breaker.vercel.app/dashboard'
 
 // Get DOM elements
 const inspectButton = document.getElementById('inspectButton')
