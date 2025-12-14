@@ -71,53 +71,48 @@ IllusionBreaker allows users to inspect any webpage using a browser extension an
 
 ---
 
-## Quick Start
+## Live Demo
 
-### Prerequisites
+IllusionBreaker is deployed live on Vercel:
 
-- Node.js 18+ and npm
-- Chrome browser
-- Git
+🔗 **https://illusion-breaker.vercel.app/**
 
-### Installation
+The live deployment demonstrates:
 
-1. **Clone the repository**
+- Complete analysis flow from any webpage
+- Interactive dashboard with trust scores and reasoning
+- Browser extension integration (manual installation required)
+- Real-time heuristic analysis without external APIs
 
-   ```bash
-   git clone https://github.com/mannshah24/Illusion-Breaker.git
-   cd Illusion-Breaker
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-
-   ```
-   http://localhost:3000
-   ```
+**Try it now:** Visit the dashboard to explore demo analyses or install the browser extension to analyze any webpage.
 
 ---
 
 ## Browser Extension Setup
 
-1. Clone the repository
-2. Open Chrome and navigate to `chrome://extensions`
-3. Enable **Developer Mode** (toggle in top right)
-4. Click **Load unpacked**
-5. Select the `/extension` folder from this project
-6. Visit any webpage and click **Inspect Reality**
+The Chrome extension allows you to analyze any webpage with a single click.
 
-The extension extracts page content and redirects you to the dashboard where analysis results are displayed automatically.
+### Installation Steps
+
+1. **Download the extension**
+
+   - Clone or download this repository: https://github.com/mannshah24/Illusion-Breaker
+   - Locate the `/extension` folder
+
+2. **Install in Chrome**
+
+   - Open Chrome and navigate to `chrome://extensions`
+   - Enable **Developer Mode** (toggle in top right)
+   - Click **Load unpacked**
+   - Select the `/extension` folder from the downloaded repository
+
+3. **Use the extension**
+   - Visit any webpage (news, social media, blog)
+   - Click the IllusionBreaker extension icon
+   - Click **Inspect Reality**
+   - View analysis results in the live dashboard
+
+The extension redirects to the live Vercel deployment automatically.
 
 **Direct link to extension folder:**  
 https://github.com/mannshah24/Illusion-Breaker/tree/main/extension
@@ -274,16 +269,23 @@ This honest, incremental approach demonstrates real library usage and clear unde
 
 ## Deployment
 
-### Deploy to Vercel
+IllusionBreaker is deployed on Vercel at **https://illusion-breaker.vercel.app/**
 
-1. Push your code to GitHub
+### Deployment Details
+
+- **Platform**: Vercel (serverless)
+- **Build**: Next.js 14 with App Router
+- **Environment Variables**: None required (no external APIs or secrets)
+- **Region**: Automatic (Vercel Edge Network)
+
+### For Developers
+
+To deploy your own instance:
+
+1. Fork this repository
 2. Import the project in [Vercel](https://vercel.com)
 3. Deploy with default settings
-4. Update extension API URL to your Vercel URL
-
-### Environment Variables
-
-No environment variables required (no external APIs or secrets needed).
+4. Update extension URLs in `extension/popup.js` and `extension/manifest.json`
 
 ---
 
@@ -350,10 +352,11 @@ illusion-breaker/
 
 ### Test Case 3: Live Webpage (Extension)
 
-1. Navigate to any news website
-2. Click the IllusionBreaker extension icon
-3. Click **"Inspect Reality"**
-4. View real-time analysis in the dashboard
+1. Install the browser extension (see Browser Extension Setup)
+2. Navigate to any news website
+3. Click the IllusionBreaker extension icon
+4. Click **"Inspect Reality"**
+5. View real-time analysis at https://illusion-breaker.vercel.app/dashboard
 
 ---
 
