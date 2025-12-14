@@ -1,0 +1,15 @@
+# Oumi Agent Requirements
+
+# Oumi - Open-source RL and agent framework
+# Used for agent abstraction and evaluation utilities
+oumi>=0.1.0
+
+# Note: Full RL fine-tuning is not executed in this MVP
+# The library is used for:
+# - Agent configuration and abstraction
+# - Evaluation utilities for heuristic outputs
+# - Foundation for future RL integration
+
+# Optional dependencies for future expansion:
+# torch>=2.0.0  # For future RL training
+# transformers>=4.35.0  # For model integration

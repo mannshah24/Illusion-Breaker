@@ -1,0 +1,283 @@
+id: illusion_breaker_analysis
+namespace: misinformation
+
+description: |
+  Illusion Breaker Analysis Workflow
+
+  This Kestra workflow orchestrates the content analysis pipeline:
+  1. Validates input content
+  2. Extracts verifiable claims
+  3. Performs media authenticity checks
+  4. Invokes the Oumi Agent for reasoning
+  5. Returns structured analysis results
+
+  NOTE: This is a demonstration workflow. In production, it would:
+  - Connect to real fact-checking databases
+  - Perform actual image forensics
+  - Use live NLP models
+  - Call external verification APIs
+
+inputs:
+  - name: content
+    type: STRING
+    required: true
+    description: Text content to analyze
+
+  - name: url
+    type: STRING
+    required: false
+    description: Source URL of the content
+
+  - name: images
+    type: ARRAY
+    itemType: STRING
+    required: false
+    description: Array of image URLs to analyze
+
+  - name: contentType
+    type: STRING
+    required: false
+    defaults: default
+    description: Content type hint (news-article, social-media, default)
+
+tasks:
+  # Task 1: Validate Input
+  - id: validate_input
+    type: io.kestra.core.tasks.log.Log
+    message: |
+      Starting analysis for content type: {{ inputs.contentType }}
+      Content length: {{ inputs.content | length }} characters
+      URL: {{ inputs.url ?? 'Not provided' }}
+      Images: {{ inputs.images | length ?? 0 }} images
+
+  # Task 2: Extract Claims
+  - id: extract_claims
+    type: io.kestra.plugin.scripts.python.Script
+    description: Extract verifiable claims from content using NLP
+    script: |
+      import json
+      import re
+
+      content = """{{ inputs.content }}"""
+
+      # Mock claim extraction (in production, would use NLP)
+      sentences = [s.strip() for s in re.split(r'[.!?]+', content) if s.strip()]
+      claims = sentences[:5]  # Take first 5 sentences as claims
+
+      print(json.dumps({
+        'claims': claims,
+        'claim_count': len(claims)
+      }))
+
+  # Task 3: Media Analysis
+  - id: analyze_media
+    type: io.kestra.plugin.scripts.python.Script
+    description: Perform heuristic checks on images
+    script: |
+      import json
+
+      images = {{ inputs.images ?? '[]' }}
+
+      # Mock media analysis (in production, would check EXIF, reverse search, etc.)
+      media_results = []
+      for idx, img_url in enumerate(images):
+        media_results.append({
+          'url': img_url,
+          'authentic': True,  # Mock result
+          'confidence': 0.75,
+          'flags': []
+        })
+
+      print(json.dumps({
+        'media_count': len(images),
+        'results': media_results
+      }))
+
+  # Task 4: Kestra AI Agent - Content Summarization & Decision
+  - id: ai_agent_summarize
+    type: io.kestra.plugin.scripts.python.Script
+    description: |
+      Kestra Built-in AI Agent Task
+
+      This task uses Kestra's AI agent capabilities to:
+      1. Summarize extracted webpage content
+      2. Make a confidence decision based on content patterns
+      3. Output a decision label (High/Medium/Low Confidence)
+
+      The agent uses deterministic heuristics for decision-making.
+    script: |
+      import json
+      import re
+
+      # Input data
+      content = """{{ inputs.content }}"""
+      url = "{{ inputs.url ?? '' }}".lower()
+      claims = {{ outputs.extract_claims.vars.claims ?? '[]' }}
+
+      # AI AGENT LOGIC: Summarization
+      # Extract key signals for summary
+      content_lower = content.lower()
+      word_count = len(content.split())
+
+      # Check for quality signals
+      has_sources = any(word in content_lower for word in ['study', 'research', 'according to', 'expert'])
+      has_sensational = any(word in content_lower for word in ['shocking', 'unbelievable', '!!!'])
+      is_social_media = any(domain in url for domain in ['twitter', 'facebook', 'instagram'])
+
+      # Generate summary (2-3 lines)
+      if has_sources and word_count > 300:
+        summary = "Content appears to be substantive article with attributed sources. Language is measured and fact-oriented. Multiple verifiable claims identified."
+      elif has_sensational or '!!!' in content:
+        summary = "Content uses sensational language and emotional appeals. Limited source attribution detected. Claims may lack verification."
+      elif is_social_media:
+        summary = "Social media content with limited editorial oversight. Brief format constrains context. Verify claims independently."
+      else:
+        summary = "General content without strong credibility indicators. Moderate length and neutral tone. Further verification recommended."
+
+      # AI AGENT LOGIC: Decision Making
+      # Compute confidence score based on signals
+      score = 50  # baseline
+
+      # Positive signals
+      if has_sources: score += 20
+      if word_count > 500: score += 10
+      if '.edu' in url or '.gov' in url: score += 20
+
+      # Negative signals  
+      if has_sensational: score -= 25
+      if is_social_media: score -= 15
+      if word_count < 200: score -= 15
+
+      # Clamp score
+      score = max(0, min(100, score))
+
+      # Decision label
+      if score >= 70:
+        decision = "High Confidence"
+      elif score >= 40:
+        decision = "Medium Confidence"
+      else:
+        decision = "Low Confidence"
+
+      # Output AI agent result
+      ai_agent_output = {
+        'summary': summary,
+        'decision': decision,
+        'confidence_score': score,
+        'signals_detected': {
+          'has_sources': has_sources,
+          'has_sensational': has_sensational,
+          'is_social_media': is_social_media,
+          'word_count': word_count
+        }
+      }
+
+      print(json.dumps(ai_agent_output))
+
+  # Task 5: Invoke Oumi Agent
+  - id: invoke_oumi_agent
+    type: io.kestra.plugin.scripts.python.Script
+    description: Call the Oumi Agent for detailed heuristic analysis
+    script: |
+      import sys
+      import json
+      import os
+
+      # Add agent directory to path
+      sys.path.append('/agent')
+
+      # Import the Oumi Agent
+      try:
+        from oumi_agent import OumiAgent, analyze_content
+        
+        # Initialize agent
+        agent = OumiAgent()
+        
+        # Prepare input with AI agent decision
+        ai_decision = {{ outputs.ai_agent_summarize.vars }}
+        
+        analysis_input = {
+          'content': """{{ inputs.content }}""",
+          'url': "{{ inputs.url ?? '' }}",
+          'title': "{{ inputs.title ?? '' }}",
+          'claims': {{ outputs.extract_claims.vars.claims ?? '[]' }},
+          'media_analysis': {{ outputs.analyze_media.vars.results ?? '[]' }},
+          'ai_agent_decision': ai_decision
+        }
+        
+        # Perform analysis
+        result = analyze_content(analysis_input)
+        
+        print(json.dumps(result))
+        
+      except Exception as e:
+        # Fallback if agent fails
+        print(json.dumps({
+          'trust_score': {{ outputs.ai_agent_summarize.vars.confidence_score ?? 50 }},
+          'confidence_label': "{{ outputs.ai_agent_summarize.vars.decision ?? 'Medium Confidence' }}",
+          'reasoning': {
+            'summary': "{{ outputs.ai_agent_summarize.vars.summary ?? 'Analysis performed with limited data' }}",
+            'steps': [],
+            'methodology': 'Fallback analysis'
+          },
+          'error': str(e)
+        }))
+
+  # Task 6: Compile Final Results
+  - id: compile_results
+    type: io.kestra.plugin.scripts.python.Script
+    description: Compile all analysis components into final result
+    script: |
+      import json
+      from datetime import datetime
+
+      # Gather all outputs
+      claims_data = {{ outputs.extract_claims.vars }}
+      media_data = {{ outputs.analyze_media.vars }}
+      ai_agent_data = {{ outputs.ai_agent_summarize.vars }}
+      agent_data = {{ outputs.invoke_oumi_agent.vars }}
+
+      # Compile final analysis result
+      final_result = {
+        'id': 'analysis-' + datetime.now().strftime('%Y%m%d%H%M%S'),
+        'timestamp': datetime.now().isoformat(),
+        'url': "{{ inputs.url ?? 'N/A' }}",
+        'content_type': "{{ inputs.contentType }}",
+        'trust_score': agent_data.get('trust_score', ai_agent_data.get('confidence_score', 50)),
+        'confidence_label': agent_data.get('confidence_label', ai_agent_data.get('decision', 'Medium Confidence')),
+        'claims': claims_data.get('claims', []),
+        'media_analysis': media_data.get('results', []),
+        'reasoning': agent_data.get('reasoning', 'Analysis complete'),
+        'ai_agent_summary': ai_agent_data.get('summary', ''),
+        'metadata': {
+          'content_length': len("""{{ inputs.content }}"""),
+          'claim_count': claims_data.get('claim_count', 0),
+          'media_count': media_data.get('media_count', 0),
+          'analysis_engine': 'Kestra AI Agent + Oumi Heuristics',
+          'workflow_version': '2.0.0',
+          'ai_agent_decision': ai_agent_data.get('decision', 'Not determined')
+        }
+      }
+
+      print(json.dumps(final_result, indent=2))
+
+  # Task 7: Log Completion
+  - id: log_completion
+    type: io.kestra.core.tasks.log.Log
+    message: |
+      Analysis complete!
+      AI Agent Decision: {{ outputs.ai_agent_summarize.vars.decision }}
+      Trust Score: {{ outputs.compile_results.vars.trust_score }}
+      Claims Analyzed: {{ outputs.compile_results.vars.metadata.claim_count }}
+
+# Output the final result
+outputs:
+  - id: analysis_result
+    type: JSON
+    value: "{{ outputs.compile_results.output }}"
+
+# Error handling
+errors:
+  - id: error_handler
+    type: io.kestra.core.tasks.log.Log
+    message: "Analysis failed: {{ task.errorMessage }}"
